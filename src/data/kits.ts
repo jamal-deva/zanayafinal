@@ -1,17 +1,45 @@
 import { ReligionKit, KitItem } from '../types';
 
 const hinduItems: KitItem[] = [
-  // Essential items
-  { id: 'h1m', name: 'Male Antim Vastra', description: 'Traditional white dhoti and angavastra for men', price: 800, required: false, category: 'antim-vastra' },
-  { id: 'h1f', name: 'Female Antim Vastra', description: 'Traditional white saree with blouse for women', price: 1000, required: false, category: 'antim-vastra' },
-  { id: 'h2', name: 'Sacred Thread (Janeu)', description: 'Traditional sacred thread', price: 50, required: true, category: 'essential' },
-  { id: 'h3', name: 'Tulsi Leaves', description: 'Holy basil leaves for purification', price: 30, required: true, category: 'essential' },
-  { id: 'h4', name: 'Ghee', description: 'Pure clarified butter for rituals', price: 200, required: true, category: 'essential' },
-  { id: 'h5', name: 'Sandalwood Paste', description: 'Pure sandalwood for tilaka', price: 300, required: true, category: 'essential' },
-  // Regional/Caste specific
-  { id: 'h6', name: 'Ganga Jal', description: 'Holy water from River Ganges', price: 100, required: false, category: 'regional' },
-  { id: 'h7', name: 'Rudraksha Mala', description: 'Sacred beads for Brahmins', price: 1500, required: false, category: 'caste' },
-  { id: 'h8', name: 'Peacock Feather', description: 'For Kshatriya rituals', price: 150, required: false, category: 'caste' }
+  // Basic Essentials (Sabke liye common)
+  { id: 'h1', name: 'White Cloth (Kafan/Dhoti/Sari)', description: 'Pure white cloth for covering the body', price: 0, required: true, category: 'essential' },
+  { id: 'h2', name: 'Sacred Thread (Mauli/Kalava)', description: 'Traditional sacred thread for rituals', price: 0, required: true, category: 'essential' },
+  { id: 'h3', name: 'Camphor (Kapoor)', description: 'Used for purification and rituals', price: 0, required: true, category: 'essential' },
+  { id: 'h4', name: 'Cotton & Cloth (Tying)', description: 'Cotton and cloth pieces for tying rituals', price: 0, required: true, category: 'essential' },
+  { id: 'h5', name: 'Ganga Jal / Tirth Jal', description: 'Holy water for purification', price: 0, required: true, category: 'essential' },
+  { id: 'h6', name: 'White Chadar', description: 'White covering cloth for the body', price: 0, required: true, category: 'essential' },
+  { id: 'h7', name: 'Earthen Pot (Matka)', description: 'Clay pot used in last rites rituals', price: 0, required: true, category: 'essential' },
+  { id: 'h8', name: 'Fire Material (Lakdi, Samagri)', description: 'Wood and ritual material available at cremation ground', price: 0, required: true, category: 'essential' },
+
+  // Regional Add-ons - North India
+  { id: 'h9', name: 'Tulsi Leaves', description: 'Placed in mouth or on chest for purification (North India: UP, Bihar, Delhi, Haryana)', price: 0, required: false, category: 'regional' },
+  { id: 'h10', name: 'Garland / Marigold Flowers', description: 'Floral offerings for rituals (North India)', price: 0, required: false, category: 'regional' },
+  { id: 'h11', name: 'Sandalwood Paste / Powder', description: 'Used for tilak and rituals (North India)', price: 0, required: false, category: 'regional' },
+  { id: 'h12', name: 'Agarbatti & Dhoopbatti', description: 'Incense sticks for rituals (North India)', price: 0, required: false, category: 'regional' },
+
+  // Regional Add-ons - South India
+  { id: 'h13', name: 'Banana Leaves', description: 'Placed beneath the body in rituals (South India: Tamil Nadu, Kerala, Karnataka, Andhra)', price: 0, required: false, category: 'regional' },
+  { id: 'h14', name: 'Coconut', description: 'Kept near the head during rituals (South India)', price: 0, required: false, category: 'regional' },
+  { id: 'h15', name: 'Betel Leaves & Areca Nut', description: 'Part of regional funeral customs (South India)', price: 0, required: false, category: 'regional' },
+  { id: 'h16', name: 'Vibuthi (Bhasma / Holy Ash)', description: 'Sacred ash used in rituals (South India / Shaivite customs)', price: 0, required: false, category: 'regional' },
+
+  // Regional Add-ons - West India
+  { id: 'h17', name: 'Kumkum / Haldi', description: 'Tilak and ritual use (West India: Maharashtra, Gujarat, Rajasthan)', price: 0, required: false, category: 'regional' },
+  { id: 'h18', name: 'Small Havan Kund + Samagri', description: 'For performing havan rituals (West India)', price: 0, required: false, category: 'regional' },
+  { id: 'h19', name: 'Ghee Packet', description: 'Used in cremation fire rituals (West India)', price: 0, required: false, category: 'regional' },
+  { id: 'h20', name: 'Sugar & Rice', description: 'For antyeshti rituals (West India)', price: 0, required: false, category: 'regional' },
+
+  // Regional Add-ons - East India
+  { id: 'h21', name: 'White Dhoti / Gamcha', description: 'Traditional cloth for Bengal customs (East India: Bengal, Odisha, Assam)', price: 0, required: false, category: 'regional' },
+  { id: 'h22', name: 'Shankh (Conch Water Sprinkle)', description: 'Conch shell used for sprinkling water (East India)', price: 0, required: false, category: 'regional' },
+  { id: 'h23', name: 'Banana Trunk', description: 'Sometimes placed under the body in rituals (East India). Optional, mainly Bengal/Odisha/Assam families', price: 0, required: false, category: 'regional' },
+
+  // Caste-Specific Add-ons
+  { id: 'h24', name: 'Rudraksha Mala', description: 'Sacred beads for Brahmins', price: 0, required: false, category: 'caste' },
+  { id: 'h25', name: 'Extra Janeu (Sacred Thread)', description: 'For Brahmin customs where additional janeu is used', price: 0, required: false, category: 'caste' },
+  { id: 'h26', name: 'Peacock Feather', description: 'Used in certain Kshatriya rituals', price: 0, required: false, category: 'caste' },
+  { id: 'h27', name: 'Sword Symbol / Token', description: 'Traditional symbol sometimes placed for Kshatriyas', price: 0, required: false, category: 'caste' },
+  { id: 'h28', name: 'Gomti Chakra', description: 'Sacred stone sometimes used in Vaishya rituals', price: 0, required: false, category: 'caste' }
 ];
 
 const muslimItems: KitItem[] = [
