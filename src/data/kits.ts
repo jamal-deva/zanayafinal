@@ -1,8 +1,9 @@
 import { ReligionKit, KitItem } from '../types';
 
 const hinduItems: KitItem[] = [
-  // Basic Essentials (Sabke liye common)
-  { id: 'h1', name: 'White Cloth (Kafan/Dhoti/Sari)', description: 'Pure white cloth for covering the body', price: 0, required: true, category: 'essential' },
+  // Essential items
+  { id: 'h1m', name: 'Male Antim Vastra', description: 'Traditional white dhoti and angavastra for men', price: 800, required: false, category: 'antim-vastra' },
+  { id: 'h1f', name: 'Female Antim Vastra', description: 'Traditional white saree with blouse for women', price: 1000, required: false, category: 'antim-vastra' },
   { id: 'h2', name: 'Sacred Thread (Mauli/Kalava)', description: 'Traditional sacred thread for rituals', price: 0, required: true, category: 'essential' },
   { id: 'h3', name: 'Camphor (Kapoor)', description: 'Used for purification and rituals', price: 0, required: true, category: 'essential' },
   { id: 'h4', name: 'Cotton & Cloth (Tying)', description: 'Cotton and cloth pieces for tying rituals', price: 0, required: true, category: 'essential' },
