@@ -14,16 +14,18 @@ const hinduItems: KitItem[] = [
 ];
 
 const muslimItems: KitItem[] = [
+  // Kafan options
+  { id: 'm1', name: 'Male Kafan', description: '3-piece white cotton shroud for men (Izar, Rida, Lifafa)', price: 1200, required: false, category: 'kafan' },
+  { id: 'm2', name: 'Female Kafan', description: '5-piece white cotton shroud for women (Izar, Khimar, Qamis, Rida, Lifafa)', price: 1500, required: false, category: 'kafan' },
   // Essential items
-  { id: 'm1', name: 'Kafan (Shroud)', description: 'White cotton burial shroud', price: 800, required: true, category: 'essential' },
-  { id: 'm2', name: 'Camphor', description: 'For purification rituals', price: 50, required: true, category: 'essential' },
-  { id: 'm3', name: 'Rose Water', description: 'For cleansing and fragrance', price: 100, required: true, category: 'essential' },
-  { id: 'm4', name: 'Cotton Wool', description: 'For body preparation', price: 80, required: true, category: 'essential' },
-  { id: 'm5', name: 'Soap (Unscented)', description: 'Pure soap for ghusl', price: 40, required: true, category: 'essential' },
+  { id: 'm3', name: 'Camphor', description: 'For purification rituals', price: 50, required: true, category: 'essential' },
+  { id: 'm4', name: 'Rose Water', description: 'For cleansing and fragrance', price: 100, required: true, category: 'essential' },
+  { id: 'm5', name: 'Cotton Wool', description: 'For body preparation', price: 80, required: true, category: 'essential' },
+  { id: 'm6', name: 'Soap (Unscented)', description: 'Pure soap for ghusl', price: 40, required: true, category: 'essential' },
   // Regional additions
-  { id: 'm6', name: 'Dates', description: 'For charity distribution', price: 200, required: false, category: 'regional' },
-  { id: 'm7', name: 'Prayer Mat', description: 'For final prayers', price: 500, required: false, category: 'regional' },
-  { id: 'm8', name: 'Quran (Small)', description: 'For recitation', price: 300, required: false, category: 'regional' }
+  { id: 'm7', name: 'Dates', description: 'For charity distribution', price: 200, required: false, category: 'regional' },
+  { id: 'm8', name: 'Prayer Mat', description: 'For final prayers', price: 500, required: false, category: 'regional' },
+  { id: 'm9', name: 'Quran (Small)', description: 'For recitation', price: 300, required: false, category: 'regional' }
 ];
 
 const christianItems: KitItem[] = [

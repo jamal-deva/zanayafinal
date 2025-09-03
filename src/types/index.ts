@@ -11,7 +11,7 @@ export interface KitItem {
   description: string;
   price: number;
   required: boolean;
-  category: 'essential' | 'regional' | 'caste';
+  category: 'essential' | 'regional' | 'caste' | 'kafan';
 }
 
 export interface Service {

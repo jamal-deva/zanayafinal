@@ -10,21 +10,30 @@ interface KitSelectorProps {
 }
 
 export function KitSelector({ religion, availableItems, selectedItems, onToggleItem }: KitSelectorProps) {
+  const kafanItems = availableItems.filter(item => item.category === 'kafan');
   const essentialItems = availableItems.filter(item => item.category === 'essential');
   const regionalItems = availableItems.filter(item => item.category === 'regional');
   const casteItems = availableItems.filter(item => item.category === 'caste');
 
   const isSelected = (item: KitItem) => selectedItems.some(selected => selected.id === item.id);
 
+  // Check if user has selected a kafan (for Muslim religion)
+  const hasSelectedKafan = religion.id === 'muslim' ? kafanItems.some(item => isSelected(item)) : true;
+  const kafanSelectionCount = kafanItems.filter(item => isSelected(item)).length;
+
   const ItemCard = ({ item, canToggle = true }: { item: KitItem; canToggle?: boolean }) => {
     const selected = isSelected(item);
+    
+    // For kafan items, only allow one selection
+    const isKafanItem = item.category === 'kafan';
+    const canSelectKafan = !isKafanItem || kafanSelectionCount === 0 || selected;
     
     return (
       <div
         className={`bg-white rounded-lg p-4 border-2 transition-all duration-300 ${
           selected ? 'border-green-500 shadow-md' : 'border-gray-200'
-        } ${canToggle ? 'cursor-pointer hover:shadow-md hover:border-blue-300' : 'opacity-75'}`}
-        onClick={canToggle ? () => onToggleItem(item) : undefined}
+        } ${canToggle && canSelectKafan ? 'cursor-pointer hover:shadow-md hover:border-blue-300' : 'opacity-75'}`}
+        onClick={canToggle && canSelectKafan ? () => onToggleItem(item) : undefined}
       >
         <div className="flex items-start justify-between">
           <div className="flex-1">
@@ -33,6 +42,11 @@ export function KitSelector({ religion, availableItems, selectedItems, onToggleI
               {item.required && (
                 <span className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">
                   Required
+                </span>
+              )}
+              {isKafanItem && (
+                <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">
+                  Choose One
                 </span>
               )}
             </div>
@@ -48,9 +62,13 @@ export function KitSelector({ religion, availableItems, selectedItems, onToggleI
               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                 <Check size={16} className="text-white" />
               </div>
-            ) : (
+            ) : canSelectKafan ? (
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-blue-100">
                 <Plus size={16} className="text-gray-600" />
+              </div>
+            ) : (
+              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <span className="text-gray-400 text-xs">N/A</span>
               </div>
             )}
           </div>
@@ -70,11 +88,33 @@ export function KitSelector({ religion, availableItems, selectedItems, onToggleI
         <p className="text-gray-600">Select items for your ceremony</p>
       </div>
 
-      {/* Essential Items */}
+      {/* Kafan Selection (Muslim only) */}
+      {religion.id === 'muslim' && kafanItems.length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+            Kafan Selection (Choose One)
+          </h3>
+          {!hasSelectedKafan && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+              <p className="text-yellow-800 text-sm font-medium">
+                Please select either Male or Female Kafan to proceed with your arrangement.
+              </p>
+            </div>
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {kafanItems.map((item) => (
+              <ItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Basic Kit Items */}
       <div className="mb-8">
         <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
           <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-          Essential Items (Included)
+          Basic Kit (Included)
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {essentialItems.map((item) => (
@@ -83,12 +123,12 @@ export function KitSelector({ religion, availableItems, selectedItems, onToggleI
         </div>
       </div>
 
-      {/* Regional Items */}
+      {/* Add-on Items */}
       {regionalItems.length > 0 && (
         <div className="mb-8">
           <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-            Regional Add-ons (Optional)
+            Add-on Items (Optional)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {regionalItems.map((item) => (
@@ -115,6 +155,13 @@ export function KitSelector({ religion, availableItems, selectedItems, onToggleI
 
       {/* Price Summary */}
       <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+        {religion.id === 'muslim' && !hasSelectedKafan && (
+          <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-4">
+            <p className="text-yellow-800 font-medium text-center">
+              ⚠️ Please select a Kafan option above to see the complete pricing
+            </p>
+          </div>
+        )}
         <div className="flex justify-between items-center">
           <div>
             <h4 className="text-lg font-semibold text-gray-900">Total Kit Price</h4>

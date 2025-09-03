@@ -108,7 +108,14 @@ function App() {
   const canProceedToNext = () => {
     switch (currentStep) {
       case 1: return bookingData.religion !== null;
-      case 2: return bookingData.selectedKitItems.length > 0;
+      case 2: {
+        if (bookingData.religion?.id === 'muslim') {
+          // For Muslim, must have at least one kafan item selected
+          const hasKafan = bookingData.selectedKitItems.some(item => item.category === 'kafan');
+          return hasKafan && bookingData.selectedKitItems.length > 0;
+        }
+        return bookingData.selectedKitItems.length > 0;
+      }
       case 3: return true; // Services are optional
       case 4: return bookingData.personalInfo.name && bookingData.personalInfo.address && bookingData.personalInfo.phone;
       case 5: return true;
