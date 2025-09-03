@@ -351,7 +351,7 @@ function App() {
                 We understand the importance of honoring your loved ones with respect and tradition.
               </p>
               <p className="text-gray-400 text-sm">
-                © 2024 Zanaya. All rights reserved.
+                © 2025 Zanaya. All rights reserved.
               </p>
             </div>
 
