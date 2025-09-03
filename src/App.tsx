@@ -82,6 +82,44 @@ function App() {
 
     setBookingData(prev => {
       const isSelected = prev.selectedKitItems.some(selected => selected.id === item.id);
+      
+      // For antim-vastra items, only allow one selection
+      if (item.category === 'antim-vastra') {
+        if (isSelected) {
+          // Remove the selected antim-vastra item
+          return {
+            ...prev,
+            selectedKitItems: prev.selectedKitItems.filter(selected => selected.id !== item.id)
+          };
+        } else {
+          // Remove any existing antim-vastra items and add the new one
+          const withoutAntimVastra = prev.selectedKitItems.filter(selected => selected.category !== 'antim-vastra');
+          return {
+            ...prev,
+            selectedKitItems: [...withoutAntimVastra, item]
+          };
+        }
+      }
+      
+      // For kafan items, only allow one selection
+      if (item.category === 'kafan') {
+        if (isSelected) {
+          // Remove the selected kafan item
+          return {
+            ...prev,
+            selectedKitItems: prev.selectedKitItems.filter(selected => selected.id !== item.id)
+          };
+        } else {
+          // Remove any existing kafan items and add the new one
+          const withoutKafan = prev.selectedKitItems.filter(selected => selected.category !== 'kafan');
+          return {
+            ...prev,
+            selectedKitItems: [...withoutKafan, item]
+          };
+        }
+      }
+      
+      // For other items, normal toggle behavior
       const updatedItems = isSelected
         ? prev.selectedKitItems.filter(selected => selected.id !== item.id)
         : [...prev.selectedKitItems, item];
@@ -109,6 +147,11 @@ function App() {
     switch (currentStep) {
       case 1: return bookingData.religion !== null;
       case 2: {
+        if (bookingData.religion?.id === 'hindu') {
+          // For Hindu, must have at least one antim vastra item selected
+          const hasAntimVastra = bookingData.selectedKitItems.some(item => item.category === 'antim-vastra');
+          return hasAntimVastra && bookingData.selectedKitItems.length > 0;
+        }
         if (bookingData.religion?.id === 'muslim') {
           // For Muslim, must have at least one kafan item selected
           const hasKafan = bookingData.selectedKitItems.some(item => item.category === 'kafan');

@@ -2,7 +2,8 @@ import { ReligionKit, KitItem } from '../types';
 
 const hinduItems: KitItem[] = [
   // Essential items
-  { id: 'h1', name: 'White Cotton Cloth', description: 'Pure white cotton shroud', price: 500, required: true, category: 'essential' },
+  { id: 'h1m', name: 'Male Antim Vastra', description: 'Traditional white dhoti and angavastra for men', price: 800, required: false, category: 'antim-vastra' },
+  { id: 'h1f', name: 'Female Antim Vastra', description: 'Traditional white saree with blouse for women', price: 1000, required: false, category: 'antim-vastra' },
   { id: 'h2', name: 'Sacred Thread (Janeu)', description: 'Traditional sacred thread', price: 50, required: true, category: 'essential' },
   { id: 'h3', name: 'Tulsi Leaves', description: 'Holy basil leaves for purification', price: 30, required: true, category: 'essential' },
   { id: 'h4', name: 'Ghee', description: 'Pure clarified butter for rituals', price: 200, required: true, category: 'essential' },
